@@ -107,7 +107,7 @@ function readActicleDetail(url, callback) {
 	})
 }
 
-export default {
+export {
 	readClassList,
 	readArticleList,
 	readActicleDetail,

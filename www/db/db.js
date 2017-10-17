@@ -1,14 +1,19 @@
 import options from './config.js'
 import mongoose from 'mongoose'
 
-const async = require('async')
+mongoose.Promise = require('bluebird')
 const db = mongoose.connection
+
 
 db.on('error', console.log.bind(console, 'connection error:'))
 db.once('open', function() {
 	console.log('connectted')
 })
 
-mongoose.connect('mongodb://localhost', options)
+let uri = 'mongodb://admin:password@192.168.33.169:27017/blogs'
+let connection = mongoose.connect(uri)
 
-export default {}
+export {
+	connection,
+	mongoose
+}
