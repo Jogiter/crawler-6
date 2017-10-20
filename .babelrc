@@ -1,11 +1,7 @@
 {
     "presets": [
-        ["env", {
-        	"targets": {
-        		"browsers": ["last 2 versions", "ie >= 9", "safari >= 7"]
-        	},
-        	// "debug": true
-        }]
+        ["env"]
     ],
     "plugins": []
 }
+
