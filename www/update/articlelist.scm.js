@@ -2,9 +2,11 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 var schema = new Schema({
+	sid: String,
 	id: String,
-	name: String,
-	url: String
+	title: String,
+	url: String,
+	time: String,
 })
 
 export default schema

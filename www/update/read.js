@@ -95,11 +95,10 @@ function readActicleDetail(url, callback) {
 		$('#articlebody .blog_tag h3').each(function() {
 			let tag = $(this).find('a').text().trim()
 			if (tag) {
-				tags.push()
+				tags.push(tag)
 			}
 		})
-
-		let content = $('.articalContent').html().trim();
+		let content = $('.articalContent').html();
 		callback(null, {
 			tags,
 			content
@@ -107,7 +106,7 @@ function readActicleDetail(url, callback) {
 	})
 }
 
-export {
+export default {
 	readClassList,
 	readArticleList,
 	readActicleDetail,

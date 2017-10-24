@@ -1,12 +1,12 @@
-import { mongoose } from '../db/db.js'
+import { mongoose } from './db.js'
 import classlistSchema from './classlist.scm.js'
 import articlelistSchema from './articlelist.scm.js'
 import articledetailSchema from './articledetail.scm.js'
 const async = require('async')
 
 let classListModel = mongoose.model('classlist', classlistSchema)
-let articleListModel = mongoose.model('articlelist', classlistSchema)
-let articleDetailListModel = mongoose.model('articledetaillist', articledetailSchema)
+let articleListModel = mongoose.model('articlelist', articlelistSchema)
+let articleDetailListModel = mongoose.model('articledetail', articledetailSchema)
 
 /**
  * 保存或者更新数据
@@ -54,7 +54,7 @@ function classList(list, callback = function() {}) {
  * @param  {Array}   list      数据列表
  * @param  {Function} callback 回调函数
  */
-function articleList(list, callbacl = function() {}) {
+function articleList(list, callback = function() {}) {
 	async.eachSeries(list, (item, next) => {
 		saveOrInsert(articleListModel, item, next)
 	}, callback)
@@ -62,16 +62,35 @@ function articleList(list, callbacl = function() {}) {
 
 /**
  * 获取文章详情
- * @param  {Array}   list      数据列表
+ * @param  {Object}   article  文章信息
  * @param  {Function} callback 回调函数
  */
-function articleDetailList(list, callbacl = function() {}) {
-	async.eachSeries(list, (item, next) => {
-		saveOrInsert(articleDetailListModel, item, next)
-	}, callback)
+function articleDetailList(article, callback = function() {}) {
+	let model = articleDetailListModel
+	model.find({
+		id: article.id
+	}).then(doc => {
+		if (doc.length) { // if exist, update
+			model.update({
+				id: article.id
+			}, article).then(res => {
+				callback(res);
+			}).catch(e => {
+				callback(e)
+			})
+		} else { // if not exist, insert
+			model.create(article).then(res => {
+				callback();
+			}).catch(e => {
+				callback(e)
+			})
+		}
+	}).catch(e => {
+		callback(e)
+	})
 }
 
-export {
+export default {
 	classList,
 	articleList,
 	articleDetailList,
