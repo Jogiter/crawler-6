@@ -40,6 +40,5 @@ app.listen(port, () => {
 })
 
 let job = schedule.scheduleJob('*/3 * * * *', () => {
-	console.log('update data from blog')
 	saveAll()
 })

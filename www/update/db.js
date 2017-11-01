@@ -7,7 +7,7 @@ const db = mongoose.connection
 
 db.on('error', console.log.bind(console, 'connection error:'))
 db.once('open', function() {
-	console.log('connectted')
+	console.log('db connectted')
 })
 
 let uri = 'mongodb://admin:password@192.168.33.169:27017/blogs'

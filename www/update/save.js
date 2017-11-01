@@ -37,15 +37,20 @@ function getArticleList(done) {
 
 // 保存文章列表
 function saveArticleList(done) {
-	async.eachOfSeries((items, index, callback) => {
-		items.map(item => item.sid = index)
+	let res = []
+	for (let key in articleListMap) {
+		handleSid(key, articleListMap[key])
+	}
+	function handleSid(sid, items) {
+		items.map(item => item.sid = sid)
 		save.articleList(items, (err) => {
 			if (err) {
-				return callback(err)
+				return done(err)
 			}
-			callback(null, `[${new Date().toLocaleString()}] 更新文章id: ${items.id}`)
+			res.push(`[${new Date().toLocaleString()}] 更新文章id: ${items.id}`)
 		})
-	}, done)
+	}
+	done(null, res)
 }
 
 // 存储文章详情
