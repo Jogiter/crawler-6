@@ -1,5 +1,6 @@
 const express = require('express')
 const schedule = require('node-schedule')
+require('./update/db.js');
 import saveAll from './update/save.js'
 import article from './web/read.js'
 const path = require('path')

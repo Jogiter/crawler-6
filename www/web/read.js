@@ -1,4 +1,4 @@
-import { mongoose } from '../update/db.js'
+import mongoose from 'mongoose'
 import classlistSchema from '../update/classlist.scm.js'
 import articlelistSchema from '../update/articlelist.scm.js'
 import articledetailSchema from '../update/articledetail.scm.js'

@@ -1,4 +1,4 @@
-import { mongoose } from './db.js'
+import mongoose from 'mongoose'
 import classlistSchema from './classlist.scm.js'
 import articlelistSchema from './articlelist.scm.js'
 import articledetailSchema from './articledetail.scm.js'

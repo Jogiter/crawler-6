@@ -2,6 +2,8 @@
 
 ## 网络爬虫和数据操作
 
+>mongoose客户端推荐robomongo:https://github.com/Studio3T/robomongo
+
 ### issues
 
 - [x] 抓包有丢失，数据库数据不是完整的
@@ -19,3 +21,9 @@ npm run dev # 开启服务
 ```
 
 打开[http://localhost:3000](http://localhost:3000)，查看爬取的博客内容。
+
+
+## readings
+
++	[mongoose-connection-best-practice](http://theholmesoffice.com/mongoose-connection-best-practice/)
++	[Native cross-platform MongoDB management tool](https://github.com/Studio3T/robomongo)
